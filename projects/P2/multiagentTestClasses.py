@@ -146,16 +146,15 @@ def run(lay, layName, pac, ghosts, disp, nGames=1, name='games'):
     Runs a few games and outputs their statistics.
     """
     starttime = time.time()
-    # TODO: HERE COMMENTED 3 LINES
-    # print('*** Running %s on' % name, layName, '%d time(s).' % nGames)
+    print('*** Running %s on' % name, layName, '%d time(s).' % nGames)
     games = pacman.runGames(lay, pac, ghosts, disp,
                             nGames, False, catchExceptions=True, timeout=120)
-    # print('*** Finished running %s on' % name, layName,
-    #       'after %d seconds.' % (time.time() - starttime))
+    print('*** Finished running %s on' % name, layName,
+          'after %d seconds.' % (time.time() - starttime))
     stats = {'time': time.time() - starttime, 'wins': [g.state.isWin() for g in games].count(True), 'games': games, 'scores': [g.state.getScore() for g in games],
              'timeouts': [g.agentTimeout for g in games].count(True), 'crashes': [g.agentCrashed for g in games].count(True)}
-    # print('*** Won %d out of %d games. Average score: %f ***' %
-    #       (stats['wins'], len(games), sum(stats['scores']) * 1.0 / len(games)))
+    print('*** Won %d out of %d games. Average score: %f ***' %
+          (stats['wins'], len(games), sum(stats['scores']) * 1.0 / len(games)))
     return stats
 
 
@@ -547,24 +546,24 @@ class EvalAgentTest(testClasses.TestCase):
                 assert points == 0
                 self.addMessage(
                     "%s %s (fail: below minimum value %s)" % (value, name, minimum))
-            # else:
-                # TODO: 
-                #self.addMessage("%s %s (%s of %s points)" %
-                                # (value, name, points, len(thresholds)))
-            # if minimum != None:
-                # self.addMessage("    Grading scheme:")
-                # self.addMessage("     < %s:  fail" % (minimum,))
-                # if len(thresholds) == 0 or minimum != thresholds[0]:
-                #     self.addMessage("    >= %s:  0 points" % (minimum,))
-                # for idx, threshold in enumerate(thresholds):
-                #     self.addMessage("    >= %s:  %s points" %
-                #                     (threshold, idx+1))
-            # elif len(thresholds) > 0:
-                # self.addMessage("    Grading scheme:")
-                # self.addMessage("     < %s:  0 points" % (thresholds[0],))
-                # for idx, threshold in enumerate(thresholds):
-                #     self.addMessage("    >= %s:  %s points" %
-                #                     (threshold, idx+1))
+            else:
+                self.addMessage("%s %s (%s of %s points)" %
+                                (value, name, points, len(thresholds)))
+
+            if minimum != None:
+                self.addMessage("    Grading scheme:")
+                self.addMessage("     < %s:  fail" % (minimum,))
+                if len(thresholds) == 0 or minimum != thresholds[0]:
+                    self.addMessage("    >= %s:  0 points" % (minimum,))
+                for idx, threshold in enumerate(thresholds):
+                    self.addMessage("    >= %s:  %s points" %
+                                    (threshold, idx+1))
+            elif len(thresholds) > 0:
+                self.addMessage("    Grading scheme:")
+                self.addMessage("     < %s:  0 points" % (thresholds[0],))
+                for idx, threshold in enumerate(thresholds):
+                    self.addMessage("    >= %s:  %s points" %
+                                    (threshold, idx+1))
 
         if any([not passed for passed, _, _, _, _, _ in results]):
             totalPoints = 0

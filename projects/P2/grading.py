@@ -14,7 +14,7 @@
 
 "Common code for autograders"
 
-import cgi
+import html
 import time
 import sys
 import json
@@ -48,8 +48,7 @@ class Grades:
         self.prereqs = defaultdict(set)
 
         # print 'Autograder transcript for %s' % self.project
-        # TODO: HERE COMMENTED
-        # print('Starting on %d-%d at %d:%02d:%02d' % self.start)
+        print('Starting on %d-%d at %d:%02d:%02d' % self.start)
 
     def addPrereq(self, question, prereq):
         self.prereqs[question].add(prereq)
@@ -300,7 +299,7 @@ to follow your instructor's guidelines to receive credit on your project.
             print('*** ' + message)
             if self.mute:
                 util.mutePrint()
-            message = cgi.escape(message)
+            message = html.escape(message)
         self.messages[self.currentQuestion].append(message)
 
     def addMessageToEmail(self, message):

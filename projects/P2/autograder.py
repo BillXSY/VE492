@@ -335,11 +335,7 @@ def getDisplay(graphicsByDefault, options=None):
 
 
 if __name__ == '__main__':
-    # for joj
-    oj_argv = ['autograder.py','-t']
-    oj_argv.append(input())
-    options = readCommand(oj_argv)
-    # modification over
+    options = readCommand(sys.argv)
     if options.generateSolutions:
         confirmGenerate()
     codePaths = options.studentCode.split(',')
