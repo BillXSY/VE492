@@ -4,7 +4,7 @@
 # educational purposes provided that (1) you do not distribute or publish
 # solutions, (2) you retain this notice, and (3) you provide clear
 # attribution to UC Berkeley, including a link to http://ai.berkeley.edu.
-# 
+#
 # Attribution Information: The Pacman AI projects were developed at UC Berkeley.
 # The core projects and autograders were primarily created by John DeNero
 # (denero@cs.berkeley.edu) and Dan Klein (klein@cs.berkeley.edu).
@@ -14,7 +14,8 @@
 
 from game import Directions, Agent, Actions
 
-import random,util,time
+import random, util, time
+
 
 class ValueEstimationAgent(Agent):
     """
@@ -33,7 +34,7 @@ class ValueEstimationAgent(Agent):
       Q-Values while acting in the environment.
     """
 
-    def __init__(self, alpha=1.0, epsilon=0.05, gamma=0.8, numTraining = 10):
+    def __init__(self, alpha=1.0, epsilon=0.05, gamma=0.8, numTraining=10):
         """
         Sets options, which can be passed in via the Pacman command line using -a alpha=0.5,...
         alpha    - learning rate
@@ -84,6 +85,7 @@ class ValueEstimationAgent(Agent):
         """
         util.raiseNotDefined()
 
+
 class ReinforcementAgent(ValueEstimationAgent):
     """
       Abstract Reinforcemnt Agent: A ValueEstimationAgent
@@ -98,6 +100,7 @@ class ReinforcementAgent(ValueEstimationAgent):
         - Use self.getLegalActions(state) to know which actions
                       are available in a state
     """
+
     ####################################
     #    Override These Functions      #
     ####################################
@@ -113,7 +116,7 @@ class ReinforcementAgent(ValueEstimationAgent):
     #    Read These Functions          #
     ####################################
 
-    def getLegalActions(self,state):
+    def getLegalActions(self, state):
         """
           Get the actions available for a given
           state. This is what you should use to
@@ -121,7 +124,7 @@ class ReinforcementAgent(ValueEstimationAgent):
         """
         return self.actionFn(state)
 
-    def observeTransition(self, state,action,nextState,deltaReward):
+    def observeTransition(self, state, action, nextState, deltaReward):
         """
             Called by environment to inform agent that a transition has
             been observed. This will result in a call to self.update
@@ -130,7 +133,7 @@ class ReinforcementAgent(ValueEstimationAgent):
             NOTE: Do *not* override or call this function
         """
         self.episodeRewards += deltaReward
-        self.update(state,action,nextState,deltaReward)
+        self.update(state, action, nextState, deltaReward)
 
     def startEpisode(self):
         """
@@ -151,8 +154,8 @@ class ReinforcementAgent(ValueEstimationAgent):
         self.episodesSoFar += 1
         if self.episodesSoFar >= self.numTraining:
             # Take off the training wheels
-            self.epsilon = 0.0    # no exploration
-            self.alpha = 0.0      # no learning
+            self.epsilon = 0.0  # no exploration
+            self.alpha = 0.0  # no learning
 
     def isInTraining(self):
         return self.episodesSoFar < self.numTraining
@@ -160,7 +163,7 @@ class ReinforcementAgent(ValueEstimationAgent):
     def isInTesting(self):
         return not self.isInTraining()
 
-    def __init__(self, actionFn = None, numTraining=100, epsilon=0.5, alpha=0.5, gamma=1):
+    def __init__(self, actionFn=None, numTraining=100, epsilon=0.5, alpha=0.5, gamma=1):
         """
         actionFn: Function which takes a state and returns the list of legal actions
 
@@ -192,7 +195,7 @@ class ReinforcementAgent(ValueEstimationAgent):
     def setDiscount(self, discount):
         self.discount = discount
 
-    def doAction(self,state,action):
+    def doAction(self, state, action):
         """
             Called by inherited class when
             an action is taken in a state
