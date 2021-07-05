@@ -1,30 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="13b4c94e-414c-4e88-b619-3b2016b6d4cf" name="默认变更列表" comment="P4 starters">
-      <change afterPath="$PROJECT_DIR$/../P4/BinaryCSP.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../P4/Interface.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../P4/P4.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../P4/StudentAutograder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../P4/Testing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../P4/csps/csp7.assignment" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../P4/csps/csp7.csp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../P4/csps/sudoku.csp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../P4/csps/sudoku1.assignment" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../P4/test_cases/backtracking3solvable1.solution" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../P4/test_cases/backtracking3solvable1.test" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../P4/test_cases/backtracking3solvable1_1.solution" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../P4/test_cases/backtracking3solvable1_1.test" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../P4/test_cases/backtracking3solvable1_2.solution" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../P4/test_cases/backtracking3solvable1_2.test" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../P4/test_cases/backtracking3solvable1_3.solution" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../P4/test_cases/backtracking3solvable1_3.test" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../P4/test_cases/backtracking3solvable1_4.solution" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../P4/test_cases/backtracking3solvable1_4.test" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../P4/test_cases/sudoku.solution" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../P4/test_cases/sudoku.test" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="13b4c94e-414c-4e88-b619-3b2016b6d4cf" name="默认变更列表" comment="0705" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,6 +50,7 @@
       <workItem from="1625311495685" duration="7924000" />
       <workItem from="1625319659405" duration="203000" />
       <workItem from="1625486031491" duration="75000" />
+      <workItem from="1625486128437" duration="159000" />
     </task>
     <task id="LOCAL-00001" summary="Project 3">
       <created>1625319789899</created>
@@ -95,7 +73,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625486070889</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="0705">
+      <created>1625486151737</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1625486151737</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -118,6 +103,7 @@
     <MESSAGE value="Project 3" />
     <MESSAGE value="0703" />
     <MESSAGE value="P4 starters" />
-    <option name="LAST_COMMIT_MESSAGE" value="P4 starters" />
+    <MESSAGE value="0705" />
+    <option name="LAST_COMMIT_MESSAGE" value="0705" />
   </component>
 </project>
