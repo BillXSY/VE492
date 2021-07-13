@@ -23,7 +23,14 @@ def consistent(assignment, csp, var, value):
         True if the value would be consistent with all currently assigned values, False otherwise
     """
     # TODO: Question 1
-    raise_undefined_error()
+    for constraint in csp.binaryConstraints:
+        # check if this "var" is involved in given constraint
+        if constraint.affects(var):
+            other_var = constraint.otherVariable(var)
+            if assignment.isAssigned(other_var):
+                if not constraint.isSatisfied(value, assignment.assignedValues[other_var]):
+                    return False
+    return True
 
 
 def recursiveBacktracking(assignment, csp, orderValuesMethod, selectVariableMethod, inferenceMethod):
@@ -54,7 +61,28 @@ def recursiveBacktracking(assignment, csp, orderValuesMethod, selectVariableMeth
         A completed and consistent assignment. None if no solution exists.
     """
     # TODO: Question 1
-    raise_undefined_error()
+    if assignment.isComplete():
+        return assignment
+    var = selectVariableMethod(assignment, csp)
+    if not var:
+        return None
+    inferences = set()
+    for value in orderValuesMethod(assignment, csp, var):
+        if consistent(assignment, csp, var, value):
+            assignment.assignedValues[var] = value
+            inferences = inferenceMethod(assignment, csp, var, value)
+            if inferences is not None:
+                # add inferences to assignment
+                for inference in inferences:
+                    assignment.varDomains[inference[0]].add(inference[1])
+                rslt = recursiveBacktracking(assignment, csp, orderValuesMethod, selectVariableMethod, inferenceMethod)
+                if rslt is not None:
+                    return rslt
+        # remove inference from assignment
+        for inference in inferences:
+            assignment.varDomains[inference[0]].discard(inference[1])
+        assignment.assignedValues[var] = None
+    return None
 
 
 def eliminateUnaryConstraints(assignment, csp):
@@ -90,6 +118,12 @@ def chooseFirstVariable(assignment, csp):
 
 
 # = = = = = = = QUESTION 2  = = = = = = = #
+def DegreeHeuristic(assignment, csp, var):
+    degree = 0
+    for constraint in csp.binaryConstraints:
+        if constraint.affects(var) and not assignment.isAssigned(constraint.otherVariable(var)):
+            degree += 1
+    return degree
 
 
 def minimumRemainingValuesHeuristic(assignment, csp):
@@ -104,10 +138,19 @@ def minimumRemainingValuesHeuristic(assignment, csp):
         the next variable to assign
     """
     nextVar = None
+    minRemain = float('inf')
     domains = assignment.varDomains
 
+    for var in domains:
+        if not assignment.isAssigned(var):
+            if len(domains[var]) < minRemain:
+                nextVar = var
+                minRemain = len(domains[var])
+            elif len(domains[var]) == minRemain and DegreeHeuristic(assignment, csp, var) > DegreeHeuristic(assignment, csp, nextVar):
+                nextVar = var
+    return nextVar
+
     # TODO: Question 2
-    raise_undefined_error()
 
 
 def orderValues(assignment, csp, var):
@@ -136,7 +179,18 @@ def leastConstrainingValuesHeuristic(assignment, csp, var):
         a list of the possible values ordered by the least constraining value heuristic
     """
     # TODO: Question 3
-    raise_undefined_error()
+    unordered_map = []
+    for value in assignment.varDomains[var]:
+        count = 0
+        for constraint in csp.binaryConstraints:
+            if constraint.affects(var):
+                otherVar = constraint.otherVariable(var)
+                for otherValue in assignment.varDomains[otherVar]:
+                    if not constraint.isSatisfied(value, otherValue):
+                        count += 1
+        unordered_map.append((count,value))
+    unordered_map.sort()
+    return [item[1] for item in unordered_map]
 
 
 def noInferences(assignment, csp, var, value):
