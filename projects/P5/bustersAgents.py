@@ -36,7 +36,8 @@ class KeyboardInference(inference.InferenceModule):
     def initializeUniformly(self, gameState):
         """Begin with a uniform distribution over ghost positions."""
         self.beliefs = util.Counter()
-        for p in self.legalPositions: self.beliefs[p] = 1.0
+        for p in self.legalPositions:
+            self.beliefs[p] = 1.0
         self.beliefs.normalize()
 
     def observeUpdate(self, observation, gameState):
@@ -45,7 +46,7 @@ class KeyboardInference(inference.InferenceModule):
         allPossible = util.Counter()
         for p in self.legalPositions:
             trueDistance = util.manhattanDistance(p, pacmanPosition)
-            if noisyDistance != None and \
+            if noisyDistance is not None and \
                     busters.getObservationProbability(noisyDistance, trueDistance) > 0:
                 allPossible[p] = 1.0
         allPossible.normalize()
@@ -83,7 +84,7 @@ class BustersAgent:
     def observationFunction(self, gameState):
         """Removes the ghost states from the gameState"""
         agents = gameState.data.agentStates
-        gameState.data.agentStates = [agents[0]] + [None for i in range(1, len(agents))]
+        gameState.data.agentStates = [agents[0]] + [None for _ in range(1, len(agents))]
         return gameState
 
     def getAction(self, gameState):
