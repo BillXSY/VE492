@@ -28,10 +28,10 @@ class DiscreteDistribution(dict):
         """
         if len(self.keys()) == 0:
             return None
-        all = list(self.items())  # all the items
-        values = [x[1] for x in all]  # all the values
+        items = list(self.items())  # all the items
+        values = [x[1] for x in items]  # all the values
         maxIndex = values.index(max(values))
-        return all[maxIndex][0]
+        return items[maxIndex][0]
 
     def total(self):
         """
@@ -92,15 +92,15 @@ class DiscreteDistribution(dict):
         if self.total() is not 1:
             self.normalize()
         randomNum = random.random()
-        sum = 0
+        tot = 0
         i = 0
-        all = list(self.items())
-        for key, value in all:
-            sum += value
-            if sum >= randomNum:
+        items = list(self.items())
+        for key, value in items:
+            tot += value
+            if tot >= randomNum:
                 break
             i += 1
-        return all[i][0]
+        return items[i][0]
 
 
 class InferenceModule:
